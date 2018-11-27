@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+# HAPROXY used to host servers to outside world
+  proxy:
+    build: ./services/proxy
+    image: devpaul-haproxy
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - devpaul-static
+# DevPaul build process for the static site
+# Separate build container builds into the devpaul-code volume to remove (node) dependencies from the nginx container
+  devpaul-build:
+    build: ./packages/devpaul.com
+    volumes:
+      - devpaul-code:/srv/_dist
+# Static nginx site
+  devpaul-static:
+    image: nginx
+    expose:
+      - "80"
+    depends_on:
+      - devpaul-build
+    volumes:
+      - devpaul-code:/usr/share/nginx/html
+
+volumes:
+  devpaul-code:
+

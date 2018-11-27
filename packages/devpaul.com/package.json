@@ -1,0 +1,20 @@
+{
+  "name": "static-site",
+  "version": "1.1.0",
+  "description": "devpaul static local site",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./support/build.js",
+    "ci": "npm run build && npm run stylus",
+    "clean": "node ./support/clean.js",
+    "docker": "node ./support/docker.js",
+    "stylus": "node ./support/stylus.js",
+    "watch": "node ./support/watch.js"
+  },
+  "author": "Paul Shannon",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "shelljs": "^0.7.5",
+    "stylus": "^0.54.5"
+  }
+}
