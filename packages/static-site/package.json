@@ -7,14 +7,20 @@
     "build": "node ./support/build.js",
     "ci": "npm run build && npm run stylus",
     "clean": "node ./support/clean.js",
-    "docker": "node ./support/docker.js",
-    "stylus": "node ./support/stylus.js",
-    "watch": "node ./support/watch.js"
+    "watch": "npm-watch"
   },
   "author": "Paul Shannon",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/dockerode": "^2.5.9",
+    "dockerode": "^2.5.7",
+    "npm-watch": "^0.5.0",
     "shelljs": "^0.7.5",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1"
+  },
+  "watch": {
+    "build": "{stylus,site}/**"
   }
 }
