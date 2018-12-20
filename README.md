@@ -7,8 +7,6 @@ Once the prerequisites have been meet (certificates obtained, volumes created, b
 * `docker-compose build`
 * `docker-compose start`
 
-## Obtaining a certificate
-
 ## Building devpaul.com
 
 * `docker create volume devpaul-code`
