@@ -1,29 +1,6 @@
 version: '3'
 
 services:
-  # HAPROXY used to host servers to outside world
-  proxy:
-    build:
-      context: ./services/proxy
-    image: devpaul-haproxy
-    ports:
-    - "8080:80"
-    - "8443:443"
-    depends_on:
-    - devpaul-static
-#    - devpaul-certbot
-    volumes:
-      - devpaul-cert:/etc/letsencrypt
-  # DevPaul build process for the static site
-  # Separate build container builds into the devpaul-code volume to remove (node) dependencies from the nginx container
-  devpaul-build-site:
-    build:
-      context: ./packages/static-site
-      dockerfile: Dockerfile.build
-    volumes:
-      - ./packages/static-site/site:/srv/site
-      - ./packages/static-site/stylus:/srv/stylus
-      - devpaul-code:/srv/_dist
   # Static nginx site
   devpaul-static:
     image: nginx:stable
@@ -33,19 +10,4 @@ services:
     - devpaul-build-site
     volumes:
     - devpaul-code:/usr/share/nginx/html
-  # Certbot
-  devpaul-certbot:
-    image: certbot/certbot
-    command: certonly --standalone -d devpaul.com
-      -n --agree-tos --email paul@devpaul.com
-      --http-01-port=80
-    expose:
-    - "80"
-    volumes:
-    - devpaul-cert:/etc/letsencrypt
-    - devpaul-letsencrypt-log:/var/log/letsencrypt
-volumes:
-  devpaul-code:
-  devpaul-cert:
-  devpaul-letsencrypt-log:
 
