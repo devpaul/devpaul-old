@@ -12,16 +12,5 @@ function copyArtifacts() {
 	shell.cp('-R', '*', common.distDirectory);
 }
 
-function buildStylus() {
-	const exec = path.join(common.modules, 'stylus');
-	const source = path.join(common.stylusDirectory, 'main.styl');
-	const target = path.join(common.distDirectory, 'resources');
-
-	shell.cd(common.rootDirectory);
-	shell.mkdir('-p', target);
-	shell.exec(`${ exec } ${ source } -o ${ target }`);
-}
-
 init();
 copyArtifacts();
-buildStylus();
