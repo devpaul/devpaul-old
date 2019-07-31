@@ -1,0 +1,28 @@
+{
+  "name": "devpaul.com",
+  "version": "1.0.0",
+  "description": "devpaul site",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "ts-node support/start.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpaul/devpaul.com.git"
+  },
+  "author": "Paul Shannon",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/devpaul/devpaul.com/issues"
+  },
+  "homepage": "https://github.com/devpaul/devpaul.com#readme",
+  "devDependencies": {
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "webserv": "^0.12.0"
+  }
+}
