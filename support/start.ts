@@ -9,7 +9,7 @@ createServer({
 	directory: join(base, 'static-site', 'site'),
 	start: true,
 	middleware: [
-		route('/packages/service-worker/*').wrap(new ServePath(join(base, 'service-worker', 'dist'))),
+		route('/packages/app/*').wrap(new ServePath(join(base, 'app', 'dist'))),
 		route('/service-worker.js').wrap(new ServePath(join(base, 'service-worker', 'dist', 'service-worker.js')))
 	]
 }).then(() => {

@@ -6,7 +6,7 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"lib": [
-			"webworker",
+			"dom",
 			"es2015"
 		],
 		"outDir": "dist"

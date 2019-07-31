@@ -35,70 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var cacheName = 'v1';
-var files = [
-    '/offline.html',
-    '/resources/Smile.png'
-];
-self.addEventListener('install', function (event) {
-    event.waitUntil(function () { return __awaiter(_this, void 0, void 0, function () {
-        var cache;
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () { return __awaiter(_this, void 0, void 0, function () {
+        var reg;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, caches.open(cacheName)];
+                case 0: return [4 /*yield*/, navigator.serviceWorker.register('/service-worker.js')];
                 case 1:
-                    cache = _a.sent();
-                    cache.addAll(files);
+                    reg = _a.sent();
                     return [2 /*return*/];
             }
         });
     }); });
-});
-self.addEventListener('activate', function (event) {
-    event.waitUntil(function () { return __awaiter(_this, void 0, void 0, function () {
-        var keys, _i, keys_1, key;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, caches.keys()];
-                case 1:
-                    keys = _a.sent();
-                    _i = 0, keys_1 = keys;
-                    _a.label = 2;
-                case 2:
-                    if (!(_i < keys_1.length)) return [3 /*break*/, 5];
-                    key = keys_1[_i];
-                    if (!(key !== cacheName)) return [3 /*break*/, 4];
-                    return [4 /*yield*/, caches.delete(key)];
-                case 3:
-                    _a.sent();
-                    _a.label = 4;
-                case 4:
-                    _i++;
-                    return [3 /*break*/, 2];
-                case 5: return [2 /*return*/];
-            }
-        });
-    }); });
-});
-self.addEventListener('fetch', function (event) {
-    var request = caches.match(event.request)
-        .then(function (match) {
-        if (match) {
-            return match;
-        }
-        else {
-            return fetch(event.request)
-                .then(function (response) {
-                var responseClone = response.clone();
-                caches.open(cacheName).then(function (cache) {
-                    cache.put(event.request, responseClone);
-                });
-                return response;
-            })
-                .catch(function () {
-                return caches.match('/offline.html');
-            });
-        }
-    });
-    event.respondWith(request);
-});
+}

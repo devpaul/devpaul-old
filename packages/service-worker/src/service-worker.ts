@@ -9,8 +9,6 @@ self.addEventListener('install', (event: any) => {
 		const cache = await caches.open(cacheName);
 		cache.addAll(files);
 	});
-
-	console.log('install', event);
 });
 
 self.addEventListener('activate', (event: any) => {
@@ -18,7 +16,6 @@ self.addEventListener('activate', (event: any) => {
 		const keys = await caches.keys();
 		for (let key of keys) {
 			if (key !== cacheName) {
-				console.log(`removing ${ key }`);
 				await caches.delete(key);
 			}
 		}
